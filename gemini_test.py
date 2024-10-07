@@ -5,11 +5,12 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv()
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
-myfile = genai.upload_file("images/" + input("Filename: "))
-# print(f"{myfile=}")
+def process_query(filename, query):
+    myfile = genai.upload_file("images/" + filename)
 
-model = genai.GenerativeModel("gemini-1.5-flash-latest")
-result = model.generate_content(
-    [myfile, "\n\n", "Can you tell me about the instruments in this photo?"]
-)
-print(result.text) 
+    model = genai.GenerativeModel("gemini-1.5-flash-latest")
+    result = model.generate_content(
+        [myfile, "\n\n", query]
+    )
+
+    return result.text
