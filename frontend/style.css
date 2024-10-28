@@ -29,8 +29,8 @@ body, html {
 #text {
   display: none; /* Initially hidden */
   position: absolute;
-  top: 50%; /* Center text vertically */
-  left: 50%; /* Center text horizontally */
+  top: 50%;
+  left: 50%;
   width: 90vw; /* Limit width */
   max-height: 80vh; /* Define maximum height */
   padding: 20px;
@@ -47,10 +47,10 @@ body, html {
 /* Button container styling, fixed at the bottom */
 .button-container {
   display: flex; /* Use flexbox for button layout */
-  justify-content: center; /* Center buttons */
-  width: 100%; /* Full width */
+  justify-content: center;
+  width: 100%;
   position: absolute; /* Position fixed at the bottom */
-  bottom: 20px; /* Space from the bottom */
+  bottom: 20px;
 }
 
 .button {
