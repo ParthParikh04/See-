@@ -12,7 +12,8 @@ function replace() {
   button2.style.display = "none";
   button3.style.display = "none";
   nb.style.display = "block";
-  text.textContent = "giraffe, (genus Giraffa), any of four species in the genus Giraffa of long-necked cud-chewing hoofed mammals of Africa, with long legs and a coat pattern of irregular brown patches on a light background. Giraffes are the tallest of all land animals; males (bulls) may exceed 5.5 metres (18 feet) in height, and the tallest females (cows) are about 4.5 metres. Using prehensile tongues almost half a metre long, they are able to browse foliage almost six metres from the ground. Giraffes are a common sight in grasslands and open woodlands in East Africa, where they can be seen in reserves such as Tanzania’s Serengeti National Park and Kenya’s Amboseli National Park. The genus Giraffa is made up of the northern giraffe (G. camelopardalis), the southern giraffe (G. giraffa), the Masai giraffe (G. tippelskirchi), and the reticulated giraffe (G. reticulata)";
+  text.style.display = "block"
+  text.textContent = "blah blah balasdasdoaido sike no giragefef 234111111111111111111111111111111111oyio87g8gyusdfygsdgyygfyud dddddddddddddddddddddddddddddddd  j j j jj  jj j j j  jj j j  jj  jj  j jjj  jj  j jj  jj  jj j j j j j j"
 }
 
 function show() {
@@ -21,7 +22,6 @@ function show() {
   button2.style.display = "inline";
   button3.style.display = "inline";
   nb.style.display = "none";
+  text.style.display = "none"
   text.textContent = "";
 }
-
-
