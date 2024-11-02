@@ -27,47 +27,14 @@ function startWebcam() {
   }
 }
 
-// function replace() {
-//   const message = "This is a test message??"
-//   video.style.display = "none";
-//   button1.style.display = "none";
-//   button2.style.display = "none";
-//   button3.style.display = "none";
-//   nb.style.display = "block";
-//   text.style.display = "block";
-
-//   canvas.width = video.videoWidth;
-//   canvas.height = video.videoHeight;
-
-//   // Draw the current video frame on the canvas
-//   const context = canvas.getContext('2d');
-//   context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-//   // Step 3: Convert canvas to Blob or Base64
-//   canvas.toBlob((blob) => {
-//     // Step 4: Send the image blob to the backend
-//     const formData = new FormData();
-//     formData.append('image', blob, 'frame.png'); // Append the Blob as a file with a name
-  
-//     fetch('http://127.0.0.1:5000/submit_query', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({ query: formData }) // Send data to the backend
-//     })
-//     .then(response => response.json()) // Parse the JSON response
-//     .then(result => {
-//       // Update the text field with the server's response
-//       text.textContent = result.response;
-//     })
-//     .catch(error => {
-//       console.error("Error:", error);
-//       text.textContent = "An error occurred.";
-//     });
-// })
-// }
-
+function speakText(text) {
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert("Your browser does not support speech synthesis.");
+  }
+}
 
 function show() {
   video.style.display = "block";
@@ -116,6 +83,7 @@ function replace() {
   .then(result => {
     // Update the text field with the server's response
     text.textContent = result.response;
+    speakText(result.response);
   })
   .catch(error => {
     console.error("Error:", error);

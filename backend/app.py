@@ -1,11 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
-import os
-import cv2
 import base64
 import numpy as np
 from gemini import process_query, process_query_file
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -22,9 +21,10 @@ def submit_query():
         f.write(decoded)
 
     response = process_query('images\image.png', user_query)
+    os.remove('images\image.png')
 
     # Here you could process the query further, but for now we'll just echo it back.
-    result = {"response": f"Here's the response: {response}"}
+    result = {"response": response}
     return jsonify(result)
 
 if __name__ == '__main__':
