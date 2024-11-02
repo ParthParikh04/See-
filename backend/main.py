@@ -1,4 +1,4 @@
-from gemini_test import *
+from backend.gemini import *
 # from speech import *
 
 while True:
