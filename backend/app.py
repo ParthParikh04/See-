@@ -3,7 +3,8 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import base64
 import numpy as np
-from gemini import process_query, process_query_file
+import tempfile
+from gemini import process_query
 import os
 
 app = Flask(__name__)
@@ -17,13 +18,26 @@ def submit_query():
     header, encoded = frame.split(',', 1)
     decoded = base64.b64decode(encoded)
 
-    with open('images\image.png', 'wb') as f:
+    f = tempfile.NamedTemporaryFile(suffix=".png", delete=False)
+    response = "ERROR"
+    try:
         f.write(decoded)
+        f.flush()  # Ensure the data is written to the file
+        print(f.name)
+        response = process_query(f.name, user_query)
+    finally:
+        f.close()  # Close the file to release any locks on it
+        # You might want to delete the file after use if it's no longer needed
+        import os
+        os.remove(f.name)
 
-    response = process_query('images\image.png', user_query)
-    os.remove('images\image.png')
 
-    # Here you could process the query further, but for now we'll just echo it back.
+    # with open('images\image.png', 'wb') as f:
+    #     f.write(decoded)
+
+    # response = process_query('images\image.png', user_query)
+    # os.remove('images\image.png')
+
     result = {"response": response}
     return jsonify(result)
 

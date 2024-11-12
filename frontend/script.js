@@ -19,10 +19,17 @@ function startWebcam() {
       })
       .catch(error => {
         console.error("Error accessing webcam:", error);
+        video.style.display = "none";
+        button1.style.display = "none";
+        button2.style.display = "none";
+        button3.style.display = "none";
+        text.style.display = "block";
         text.textContent = "Unable to access webcam.";
       });
   } else {
     console.error("getUserMedia not supported on this browser.");
+    video.style.display = "none";
+    text.style.display = "block";
     text.textContent = "Webcam not supported on your browser.";
   }
 }
@@ -61,6 +68,8 @@ function replace() {
   button3.style.display = "none";
   nb.style.display = "block";
   text.style.display = "block";
+  // canvas.style.display = "inline";
+
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
 
@@ -77,7 +86,7 @@ function replace() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ frame: dataURL, query: "What is this?" }) // Send data to the backend
+    body: JSON.stringify({ frame: dataURL, query: "What does this text say? Read it verbatim."}) // "Read this text." }) // Send data to the backend
   })
   .then(response => response.json()) // Parse the JSON response
   .then(result => {
